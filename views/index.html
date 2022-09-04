@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/top-picks.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <title>Home</title>
+</head>
+<script>
+    var app = angular.module("MyApp", ["ngRoute"]);
+    app.config(function ($routeProvider) {
+        $routeProvider
+            .when("/", {
+                // template : "<p>Hello u r in about</p>"
+                templateUrl: 'home'
+            })
+            .when("/top-picks", {
+                templateUrl: 'top-picks'
+            })
+            .when("/camping", {
+                templateUrl: 'trips',
+                controller: 'camping'
+            })
+            .when("/trekking", {
+                templateUrl: 'trips',
+                controller: 'trekking'
+            })
+            .when("/backpack", {
+                templateUrl: 'trips',
+                controller: 'backpacking'
+            })
+            .when("/account", {
+                templateUrl: 'myaccount',
+                controller: 'account'
+            })
+    });
+    app.controller('camping', function ($scope, $window) {
+        $scope.header = 'Camping';
+        $scope.name = ['Spiti Valley', 'Rann of Kutch', 'Dharmshala'];
+        $scope.day = [4, 4, 3];
+        $scope.night = [3, 3, 2];
+        $scope.place = ['Himachal Pradesh', 'Gujarat', 'Himachal Pradesh'];
+        $scope.price = [800, 550, 300];
+        $scope.images = ['images/spitivalley-1.jpg', 'images/rann.jpg', 'images/dharmshala-1.jpg'];
+        $scope.bill = function (a) {
+            document.getElementById('boxx').style.display = "none";
+            var bil = document.getElementById('billcontainer');
+            bil.style.display = "block";
+            document.getElementById('tripname').innerHTML = "Destination: " + $scope.name[a];
+            document.getElementById('prices').innerHTML = "Price: $" + $scope.price[a];
+            document.getElementById('cat').innerHTML = "Category: " + $scope.header;
+        }
+    });
+
+    app.controller('trekking', ['$scope', function ($scope) {
+        $scope.header = 'Trekking';
+        // $scope.des = [{name:'Kashmir Great Lakes Trek',day:2,night:1,place:'kashmir',price:500},
+        //               {name: 'Kanchenjungea base camp trek',day:2,night:1,place:'kashmir',price:500}];
+        $scope.name = ['Kashmir Great Lakes Trek', 'Kanchenjunga base camp trek', 'Chadar Trek'];
+        $scope.day = [2, 2, 3];
+        $scope.night = [1, 1, 2];
+        $scope.place = ['Himachal Pradesh', 'Himalayas', 'Ladakh'];
+        $scope.price = [500, 750, 700];
+        $scope.images = ['images/kashmir.jpeg', 'images/kanch.jpeg', 'images/wait.jpg'];
+        $scope.bill = function (a) {
+            document.getElementById('boxx').style.display = "none";
+            var bil = document.getElementById('billcontainer');
+            bil.style.display = "block";
+            document.getElementById('tripname').innerHTML = "Destination: " + $scope.name[a];
+            document.getElementById('prices').innerHTML = "Price: $" + $scope.price[a];
+            document.getElementById('cat').innerHTML = "Category: " + $scope.header;
+        }
+        //myTrip($scope.name[a], $scope.price[a], $scope.header);
+    }]);
+
+    app.controller('backpacking', ['$scope', function ($scope) {
+        $scope.header = 'Backpacking';
+        $scope.name = ['Mcleodganj', 'Meghalaya', 'Leh Ladakh'];
+        $scope.day = [4, 6, 8];
+        $scope.night = [3, 5, 7];
+        $scope.place = ['Himachal Pradesh', 'Assam', 'Leh'];
+        $scope.price = [800, 550, 300];
+        $scope.images = ['images/mcleodganj-1.jpg', 'images/meghalaya-2.jpg', 'images/ladakh-3.jpg'];
+        $scope.bill = function (a) {
+            document.getElementById('boxx').style.display = "none";
+            var bil = document.getElementById('billcontainer');
+            bil.style.display = "block";
+            document.getElementById('tripname').innerHTML = "Destination: " + $scope.name[a];
+            document.getElementById('prices').innerHTML = "Price: $" + $scope.price[a];
+            document.getElementById('cat').innerHTML = "Category: " + $scope.header;
+        }
+        //myTrip($scope.name[a], $scope.price[a], $scope.header);
+    }]);
+
+    app.controller('account', function ($scope) {
+        const token = localStorage.getItem('token');
+        const data = JSON.parse(atob(token.split('.')[1]))
+        const para = document.createElement("h2");
+        const node = document.createTextNode("Username: " + data.username);
+        para.appendChild(node);
+        const element = document.getElementById("pro");
+        element.appendChild(para);
+
+        const para1 = document.createElement("h2");
+        const node1 = document.createTextNode("Email: " + data.email);
+        para1.appendChild(node1);
+        const element1 = document.getElementById("pro");
+        element1.appendChild(para1);
+
+
+        const para2 = document.createElement("h2");
+        const node2 = document.createTextNode("Contact: " + data.phone);
+        para2.appendChild(node2);
+        const element2 = document.getElementById("pro");
+        element1.appendChild(para2);
+
+
+    });
+
+</script>
+
+<body ng-app="MyApp">
+    <!-- Header -->
+    <div class="header">
+        <img src="images/logo1.png" alt="" width="150px" height="50px" style="padding: 10px;">
+        <div class="header-right">
+            <a href="#!">Home</a>
+            <a href="#!top-picks">Top Picks</a>
+            <a href="#!account">My Account</a>
+
+        </div>
+    </div>
+    <div ng-view>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fa fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fa fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fa fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fa fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fa fa-linkedin"></i></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                        class="fa fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+
+            <!-- Section: Form -->
+            <section class="">
+                <form action="">
+                    <!--Grid row-->
+                    <div class="row d-flex justify-content-center">
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <p class="pt-2">
+                                <strong>Sign up for our newsletter</strong>
+                            </p>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-5 col-12">
+                            <!-- Email input -->
+                            <div class="form-outline form-white mb-4">
+                                <input type="email" id="form5Example21" class="form-control" />
+                                <label class="form-label" for="form5Example21">Email address</label>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-auto">
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-outline-light mb-4">
+                                Subscribe
+                            </button>
+                        </div>
+                        <!--Grid column-->
+                    </div>
+                    <!--Grid row-->
+                </form>
+            </section>
+            <!-- Section: Form -->
+
+            <!-- Section: Text -->
+            <section class="mb-4">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+                    repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+                    eum harum corrupti dicta, aliquam sequi voluptate quas.
+                </p>
+            </section>
+            <!-- Section: Text -->
+
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">Links</h5>
+
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a href="#!" class="text-white">Link 1</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 2</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 3</a>
+                            </li>
+                            <li>
+                                <a href="#!" class="text-white">Link 4</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="https://apscamp.com/">APScamp.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</body>
+
+</html>

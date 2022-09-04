@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  background-color: #f1f1f1;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 8px 246px;
+  /* border: 2px solid black; */
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 3px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  margin: 8px;
+  height: 30px;
+}
+
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.header-right a:hover {
+  border-bottom: 3px solid rgb(16, 163, 16);
+}
+.header-right {
+  float: right;
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-right {
+    float: none;
+  }
+}
+
+/* *************************Main Body************************* */
+.main-body .container {
+  /* border: 2px solid red; */
+  width: 75%;
+  height: 100%;
+  margin-top: 20px;
+}
+/* ************************** Box 1********************************* */
+.main-body .container .box1 {
+  /* border: 2px solid darkblue; */
+  width: 100%;
+  text-align: center;
+}
+.main-body .container .box1 h1 {
+  font-weight: bold;
+  font-size: 70px;
+  margin-top: 4px;
+}
+.main-body .container .box1 #main-descri {
+  /* border: 2px solid orange; */
+  width: 420px;
+  height: 91px;
+  font-size: 26px;
+  font-weight: 100;
+  margin: auto;
+}
+.main-body .container .box1 .searchbox {
+  width: 86%;
+  height: 103px;
+  /* border: 2px solid grey; */
+  box-shadow: 2px -3px rgba(128, 128, 128, 0.219);
+  margin: auto;
+  margin-bottom: 4px;
+  border-radius: 60px;
+  background-color: #f1f1f1;
+  margin-top: -76px;
+  text-align: left;
+  display: flex;
+}
+
+.main-body .container .box1 .searchbox .search {
+  width: 356px;
+  height: 38px;
+  border-radius: 19px;
+  margin-top: 18px;
+  margin-left: 29px;
+  border: #f1f1f1;
+  padding: 8px;
+}
+.main-body .container .box1 .searchbox .labels {
+  position: relative;
+  top: 9px;
+  left: 46px;
+  font-weight: 600;
+}
+.main-body .container .box1 .searchbox .icons {
+  position: relative;
+  top: -1px;
+  left: 370px;
+  font-weight: 600;
+}
+
+.main-body .container .box1 #imageheader {
+  background-image: url("campingheader.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 98%;
+  height: 500px;
+  margin: auto;
+  /* border: 2px solid green; */
+  padding: 20px;
+  border-radius: 30px;
+  margin-top: 82px;
+}
+
+.main-body .container .box1 .searchbox #searchbtn {
+  background-color: rgb(12, 223, 12);
+  color: white;
+  border-radius: 33px;
+  width: 45px;
+  height: 45px;
+  position: relative;
+  top: 35px;
+  left: 30px;
+  border: 2px solid rgb(12, 223, 12);
+}
+
+/* ************************Box 2*********************** */
+.main-body .container .box2 {
+  display: flex;
+  /* border: 2px solid black; */
+  margin: auto;
+  margin-top: 80px;
+  padding: 8px;
+}
+.main-body .container .box2 .card {
+  width: 504px;
+  height: 470px;
+  margin-left: 30px;
+  border-radius: 30px;
+}
+.main-body .container .box2 .card-img-top {
+  width: 100%;
+  height: 297px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.main-body .container .box2 .card-title {
+  font-weight: 600;
+  font-family: "Fredoka", sans-serif;
+}
+.main-body .container .box2 #card-body1 {
+  background-color: rgba(255, 0, 0, 0.486);
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.main-body .container .box2 #card-body2 {
+  background-color: rgba(0, 0, 255, 0.575);
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+.main-body .container .box2 .explore {
+  width: 160px;
+  height: 45px;
+  border-radius: 33px;
+}
+.main-body .container .box2 #btn1 {
+  color: rgba(255, 0, 0, 0.486);
+  font-weight: 600;
+}
+.main-body .container .box2 .explore:hover {
+  text-decoration: underline;
+}
+.main-body .container .box2 #btn2 {
+  color: rgba(0, 0, 255, 0.575);
+  font-weight: 600;
+}
+.main-body .container .box2 .card:hover {
+  margin-top: 5px;
+  box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.253);
+}
+
+/* ************************Box3************************* */
+.main-body .container .box3 {
+  /* border: 2px solid blue; */
+  margin: auto;
+  margin-top: 80px;
+  width: 100%;
+  height: 500px;
+  background-image: url("backpacking.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+.main-body .container .box3:hover {
+  margin-top: 78px;
+  box-shadow: 8px 8px 5px rgba(128, 128, 128, 0.253);
+}
+
+.main-body .container .box3 .subbox1 {
+  width: 381px;
+  height: 220px;
+  /* border: 2px solid white; */
+  position: relative;
+  left: 672px;
+  top: 36px;
+  border-radius: 30px;
+  background-color: rgb(116, 84, 93);
+  color: white;
+  padding: 20px;
+}
+.main-body .container .box3 .subbox1 h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.main-body .container .box3 .subbox1 #btn1 {
+  color: rgb(116, 84, 93);
+  width: 160px;
+  height: 45px;
+  border-radius: 33px;
+  font-weight: 600;
+}
+.main-body .container .box3 .subbox1 #btn1:hover {
+  text-decoration: underline;
+}
+
+/* ********************main-body2************************** */
+.main-body2 {
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid brown; */
+  background-color: rgb(235, 233, 223);
+}
+.main-body2 .container2 {
+  /* border: 2px solid black; */
+  width: 63%;
+  height: 100%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 16px;
+}
+.main-body2 .container2 #safetyheader {
+
+  font-size: 30px;
+  font-weight: 700;
+}
+.main-body2 .container2 .flexcontainer {
+  display: flex;
+}
+.main-body2 .container2 .subbox {
+  /* border: 2px solid red; */
+  width: 449px;
+  height: 211px;
+  margin: 10px;
+  background-color: rgb(243, 242, 239);
+  padding: 14px;
+  border-radius: 16px;
+}
+
+.main-body2 .container2 #subbox1 {
+  width: 97%;
+  height: 169px;
+}
+.main-body2 .container2 .subbox p
+{
+text-align: justify;
+}
+.main-body2 .container2 .subbox h3
+{
+    font-weight: 600;
+    font-size: 23px;
+}

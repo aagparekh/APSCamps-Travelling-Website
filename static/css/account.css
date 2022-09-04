@@ -1,0 +1,46 @@
+.acc-container
+{
+    /*border: 2px solid red;*/
+    margin: auto;
+    display: flex;
+    height: 800px;
+    justify-content: center;
+    align-items: center;
+    background-image: url('acc-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.acc-container .acc-box
+{
+    /*border: 2px solid black;*/
+    width: 473px;
+    height: 381px;
+    margin: 8px;
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 8px 8px 5px rgba(128, 128, 128, 0.514);
+    
+}
+#probtn
+{
+    background-color: blue;
+    border-radius: 8px;
+    color: white;
+    border: 2px solid blue;
+    font-weight: 600;
+    padding: 8px;
+    text-decoration: none;
+    
+}
+#probtn:hover
+{
+    color: blue;
+    background-color: transparent;
+    cursor: pointer;
+
+}
+

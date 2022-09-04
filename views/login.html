@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <style>
+        input.ng-invalid.ng-touched {
+            border: 3px solid #DA3637;
+        }
+
+        .error {
+            color: #DA3637;
+        }
+    </style>
+</head>
+
+<body ng-app="">
+    <form name="myform" id="reg-id" ng-submit="toggle()">
+        <div id="container" class="container">
+            <!-- FORM SECTION -->
+            <div class="row">
+                <!-- SIGN UP -->
+                <div class="col align-items-center flex-col sign-up">
+                    <div class="form-wrapper align-items-center">
+                        <div class="form sign-up">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" name="username" placeholder="Username" ng-model="user"
+                                    ng-required="true" id="user1">
+                                <p class="error" ng-show="myform.username.$invalid && myform.username.$touched">*Fill
+                                    out the first name</p> <br
+                                    ng-hide="myform.username.$invalid && myform.username.$touched">
+
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bx-mail-send'></i>
+                                <input type="email" name="email" placeholder="Email" ng-model="email" ng-required="true"
+                                    id="email">
+                                <p class="error" ng-show="myform.email.$invalid && myform.email.$touched">*Fill out the
+                                    Email</p> <br ng-hide="myform.email.$invalid && myform.email.$touched">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" name="Password" placeholder="Password" ng-model="Pass"
+                                    ng-required="true"
+                                    ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/"
+                                    id="pass1">
+                                <p class="error" ng-show="myform.Password.$invalid && myform.Password.$touched">
+                                    *required</p> <br ng-hide="myform.Password.$invalid && myform.Password.$touched">
+                                <p class="error" ng-show="myform.Password.$error.pattern">*Password is very weak</p>
+
+
+                            </div>
+                            <div class=" input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="text" class="form-control placeholder" name="phone" ng-model="phonenumber"
+                                    ng-required="true" placeholder="Phone Number" id="phoneno">
+                                <p class="error" ng-show="myform.phone.$invalid && myform.phone.$touched">*type
+                                    Phone Number</p> <br ng-hide="myform.phone.$invalid && myform.phone.$touched">
+                            </div>
+                            <button onclick="registerData()">
+                                Sign up
+                            </button>
+                            <p>
+                                <span>
+                                    Already have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign in here
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END SIGN UP -->
+                <!-- SIGN IN -->
+                <div class="col align-items-center flex-col sign-in">
+                    <div class="form-wrapper align-items-center">
+                        <div class="form sign-in">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" placeholder="Username" id="user2">
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Password" id="pass2">
+                            </div>
+                            <button onclick="loginData()">
+                                Sign in
+                            </button>
+                            <p>
+                                <span>
+                                    Don't have an account?
+                                </span>
+                                <b onclick="toggle()" class="pointer">
+                                    Sign up here
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-wrapper">
+
+                    </div>
+                </div>
+                <!-- END SIGN IN -->
+            </div>
+            <!-- END FORM SECTION -->
+            <!-- CONTENT SECTION -->
+            <div class="row content-row">
+                <!-- SIGN IN CONTENT -->
+                <div class="col align-items-center flex-col">
+                    <div class="text sign-in">
+                        <h2>
+                            Welcome
+                        </h2>
+
+                    </div>
+                    <div class="img sign-in">
+
+                    </div>
+                </div>
+                <!-- END SIGN IN CONTENT -->
+                <!-- SIGN UP CONTENT -->
+                <div class="col align-items-center flex-col">
+                    <div class="img sign-up">
+
+                    </div>
+                    <div class="text sign-up">
+                        <h2>
+                            Join with us
+                        </h2>
+
+                    </div>
+                </div>
+                <!-- END SIGN UP CONTENT -->
+            </div>
+            <!-- END CONTENT SECTION -->
+        </div>
+
+        <script>
+            let container = document.getElementById('container')
+
+            toggle = () => {
+                container.classList.toggle('sign-in')
+                container.classList.toggle('sign-up')
+            }
+
+            setTimeout(() => {
+                container.classList.add('sign-in')
+            }, 200)
+        </script>
+    </form>
+    <script>
+        async function registerData() {
+            const user1 = document.getElementById("user1").value;
+            const email = document.getElementById("email").value;
+            const pass1 = document.getElementById("pass1").value;
+            const phoneno = document.getElementById("phoneno").value;
+            const result = await fetch('api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user1, email, pass1, phoneno
+                })
+            }).then((res) => res.json())
+            console.log(result);
+            toggle()
+        }
+
+        async function loginData() {
+            const user2 = document.getElementById("user2").value;
+            const pass2 = document.getElementById("pass2").value;
+            const result = await fetch('api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user2, pass2
+                })
+            }).then((res) => res.json())
+            if (result.status === 'ok') {
+                console.log("Token: ", result.data)
+                localStorage.setItem('token', result.data)
+                window.location.href = 'index';
+            }
+            else {
+                alert(result.error)
+            }
+        }
+    </script>
+</body>
+
+</html>
